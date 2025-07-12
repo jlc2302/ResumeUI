@@ -10,43 +10,44 @@ function DashboardHeader() {
 
   return (
     <header className="fixed top-0 z-[200] w-full transition-all duration-500 ease-in-out">
-      <div className="bg-white text-[#133970] h-12 flex items-center justify-between px-[3%] shadow-md">
+      <div className="bg-white text-[#133970] sm:h-12 xl:h-15 flex items-center justify-between sm:px-[1rem] md:px-[2rem] shadow-md">
+
         {/* Logo + Title */}
         <div className="flex items-center">
           <img
             src={Logoicon}
             alt="Logo"
-            className="w-[50px] sm:w-[60px] md:w-[70px]"
+            className="sm:w-[60px] md:w-[70px] xl:w-[80px]"
           />
-          <h3 className="text-xs sm:text-sm md:text-[13px] ml-[-10px]">
+          <h3 className="sm:text-[12px] md:text-[13px] xl:text-[17px]">
             Enhancify.AI
           </h3>
         </div>
 
         {/* Navigation */}
-        <nav className="flex items-center gap-2 sm:gap-4">
+        <nav className="flex items-center sm:gap-4 xl:gap-7">
           <Link
             to="#"
-            className="text-xs sm:text-[12px] md:text-[13px] font-semibold hover:text-[#8c9bf0] transition-all duration-300"
+            className="sm:text-[12px] md:text-[13px] xl:text-[16px] font-semibold hover:text-[#8c9bf0] transition-all duration-300"
           >
             Home
           </Link>
           <Link
             to="#"
-            className="text-xs sm:text-[12px] md:text-[13px] font-semibold hover:text-[#8c9bf0] transition-all duration-300"
+            className="sm:text-[12px] md:text-[13px] xl:text-[16px] font-semibold hover:text-[#8c9bf0] transition-all duration-300"
           >
             About
           </Link>
           <Link
             to="#"
-            className="text-xs sm:text-[12px] md:text-[13px] font-semibold hover:text-[#8c9bf0] transition-all duration-300"
+            className="sm:text-[12px] md:text-[13px] xl:text-[16px] font-semibold hover:text-[#8c9bf0] transition-all duration-300"
           >
             Contacts
           </Link>
 
           {/* Upgrade Button */}
           <Link to="">
-            <button className="text-[10px] sm:text-[10px] font-semibold text-white bg-[#133970] rounded-full px-2 sm:px-2.5 md:px-3 py-1 sm:py-1 md:py-1 my-2">
+            <button className="sm:text-[11px] xl:text-[13px] font-semibold text-white bg-[#133970] rounded-full sm:px-3 md:px-3.5 xl:px-4.5 sm:py-1 xl:py-1.5">
               Upgrade Plan
             </button>
           </Link>
@@ -56,14 +57,14 @@ function DashboardHeader() {
             <img
               src={Profileicon}
               alt="User Profile"
-              className="w-[28px] sm:w-[32px] md:w-[35px] cursor-pointer"
+              className="sm:w-[32px] xl:w-[43px] cursor-pointer"
             />
 
             <div className="relative">
               <img
                 src={Tooltipicon}
                 alt="Tooltip Icon"
-                className="w-[10px] cursor-pointer"
+                className="sm:w-[9px] md:w-[10px] xl:w-[11px] cursor-pointer"
                 onClick={toggleTooltip}
               />
 
