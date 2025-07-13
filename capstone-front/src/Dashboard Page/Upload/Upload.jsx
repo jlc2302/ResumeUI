@@ -9,10 +9,10 @@ function Upload() {
 
       <section>
         <div
-          className="fixed sm:top-[5.3rem] xl:top-[6rem] sm:left-[19%] md:left-[23.8%]
+          className="fixed sm:top-[5.3rem] md:top-[5.3rem] xl:top-[6rem] sm:left-[19%] md:left-[23.8%]
                      w-[70%] h-[79%] 
                      bg-[#eef3fb] border-2 border-[#2979ff] rounded-[10px]
-                     flex flex-col items-center justify-center 
+                     flex flex-col items-center justify-center
                      sm:gap-4
                      transition-all duration-500 ease-in-out"
         >
@@ -85,7 +85,7 @@ function Upload() {
           </form>
 
           {/* Bottom Note */}
-          <div className="sm:text-[11px] xl:text-[13px] italic text-[#a7a7a7] sm:mt-5">
+          <div className="sm:text-[10px] xl:text-[13px] italic text-[#a7a7a7] mt-5">
             <p>
               Please note that AI can make mistakes. We recommend verifying the information provided.
             </p>

@@ -13,12 +13,12 @@ function DashboardSidebar() {
                    flex flex-col 
                    gap-3 sm:gap-4 md:gap-7 xl:gap-11
                    pt-[2.5rem] sm:pt-[6rem] xl:pt-[6.5rem]
-                   pl-[clamp(5px,3vw,25px)] 
+                   pl-[clamp(5px,3vw,38px)]
                    transition-all duration-500 ease-in-out"
       >
         {/* Title */}
         <h2
-          className="text-[1.8vw] xl:text-[1.4em]
+          className="text-[1.8vw] xl:text-[23px]
                      font-semibold transition-all duration-500 ease-in-out"
         >
           <span className="hidden md:inline">My Dashboard</span>
@@ -48,7 +48,7 @@ function DashboardSidebar() {
 
             <li>
               <Link to="/result" className="flex items-center gap-[1%]">
-                <img src={ResultIcon} alt="Result" className="w-1 sm:w-[50%] md:w-[10%] mt-[2px]" />
+                <img src={ResultIcon} alt="Result" className="w-1 sm:w-[50%] md:w-[10%]" />
                 <span className="hidden md:inline">Result</span>
               </Link>
             </li>

@@ -1,61 +1,43 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ProgressCircularBar from "../ProgressCircularBar";
+
 function Relevance() {
-  const radius = 41;
-  const center = 60;
-  const weight = 25;
-  const fullCircle = 2 * Math.PI * radius;
+  const [relevanceScore, setRelevanceScore] = useState(0);
+  const [relevanceFeedback, setRelevanceFeedback] = useState("Loading...");
+
+  useEffect(() => {
+    const fetchRelevanceScore = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/relevance-score");
+        setRelevanceScore(response.data.score);
+      } catch (error) {
+        console.error("Failed to fetch relevance score:", error);
+        setRelevanceScore(0);
+      }
+    };
+
+    const fetchRelevanceFeedback = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/relevance-feedback");
+        setRelevanceFeedback(response.data.comment || "No feedback provided.");
+      } catch (error) {
+        console.error("Failed to fetch relevance feedback:", error);
+        setRelevanceFeedback("Unable to fetch feedback.");
+      }
+    };
+
+    fetchRelevanceScore();
+    fetchRelevanceFeedback();
+  }, []);
 
   return (
-    <section>
-      {/* Left Card (Relevance Progress) */}
-      <div className="fixed md:left-[34%] xl:left-[32.6%] md:top-[320px] xl:top-[380px] md:w-[15vw] xl:w-[15.2vw] md:h-[29vh] xl:h-[32.4vh] flex flex-col items-center justify-center bg-white border-2 border-[#c2bebe] rounded-tl-[10px] rounded-bl-[10px] pb-5">
-        <h1 className="text-[#133970] text-[15px] md:text-[13px] leading-[60px]">
-          Relevance
-        </h1>
-        <div className="flex flex-col items-center">
-         <div className="relative flex justify-center items-center">
-  <svg
-    viewBox="-35 5 180 110"
-    className="sm:w-full md:w-full xl:w-full h-auto rotate-[-90deg] origin-center"
-  >
-    <circle
-      stroke="#ddd"
-      strokeWidth={weight}
-      fill="transparent"
-      r={radius}
-      cx={center}
-      cy={center}
+    <ProgressCircularBar
+      title="Relevance"
+      percentage={relevanceScore}
+      feedback={relevanceFeedback}
+      top="sm:top-[50%] md:top-[60%] xl:top-[380px]"
     />
-    <circle
-      stroke="#3b7ce9"
-      strokeWidth={weight}
-      fill="transparent"
-      r={radius}
-      cx={center}
-      cy={center}
-      strokeDasharray={fullCircle}
-      strokeDashoffset={82.94}
-      className="transition-[stroke-dashoffset] duration-200 ease-linear"
-    />
-  </svg>
-
-  {/* This centers the text perfectly */}
-  <div className="absolute inset-0 flex items-center justify-center md:text-[13px] md:bottom-[10px] xl:text-[16px]">
-    70%
-  </div>
-</div>
-        </div>
-      </div>
-
-      {/* Right Card (Analytics Feedback) */}
-      <div className="fixed md:left-[48.8%] xl:left-[47.6%] md:top-[320px] xl:top-[380px] md:w-[37vw] xl:w-[37.5vw] md:h-[29vh] xl:h-[32.4vh] flex flex-col justify-center bg-white border-2 border-[#c2bebe] rounded-tr-[10px] rounded-br-[10px] md:px-[28px] xl:px-[38px] md:py-[20px] xl:py-[32px]">
-        <h1 className="text-[#133970] md:text-[13px] xl:text-[15px] md:mb-2 xl:mb-5">
-          Analytics
-        </h1>
-        <div className="md:w-full xl:w-full md:h-full xl:h-[200px] bg-[#cecece] rounded-[10px] p-5">
-          <p>Your relevance feedback will appear here.</p>
-        </div>
-      </div>
-    </section>
   );
 }
 
