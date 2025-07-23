@@ -79,14 +79,14 @@ function Feedback() {
             src={LeftArrowIcon}
             alt="Previous"
             onClick={handlePrev}
-            className="fixed w-[35px] sm:top-[30%] md:top-[40%] xl:top-[50%] sm:left-[28%] md:left-[41%] lg:left-[47%] xl:left-[660px] translate-x-[120px] translate-y-[280px]"
+            className="fixed w-[42px] sm:top-[30%] md:top-[40%] xl:top-[47%] sm:left-[28%] md:left-[41%] lg:left-[47%] xl:left-[48%] translate-x-[120px] translate-y-[280px] cursor-pointer"
           />
         )}
         <img
           src={RightArrowIcon}
           alt={step < views.length - 1 ? "Next" : "Go to Result"}
           onClick={handleNext}
-          className="fixed w-[35px] sm:top-[30%] md:top-[40%] xl:top-[50%] sm:left-[28%] md:left-[41%] lg:left-[47%] xl:left-[660px] translate-x-[170px] translate-y-[280px]"
+          className="fixed w-[42px] sm:top-[30%] md:top-[40%] xl:top-[47%] sm:left-[28%] md:left-[41%] lg:left-[47%] xl:left-[660px] translate-x-[170px] translate-y-[280px]"
         />
       </div>
     </main>

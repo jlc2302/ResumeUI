@@ -1,17 +1,38 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import DashboardHeader from "../../Header and Sidebar/Header/DashboardHeader";
 import DashboardSidebar from "../../Header and Sidebar/Sidebar/DasboardSidebar";
 
-function Analysis() {
-  const radius = 110;
+import { useAnalysis } from "./useAnalysis";
+
+function Analysis({ speed = 10 }) {
+  const [analysisScore, setAnalysisScore] = useState(0);
+
+  const { bluePercent, redPercent, showRed } = useAnalysis(analysisScore, speed);
+
+  useEffect(() => {
+    const analysisScore = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/analysis-score");
+        const score = response.data.score;
+        setAnalysisScore(0);
+        setTimeout(() => {
+          setAnalysisScore(score);
+        }, 200);
+      } catch (error) {
+        console.error("Failed to fetch score:", error);
+      }
+    };
+
+    analysisScore();
+  }, []);
+
+  const radius = 115;
   const center = 165;
   const weight = 40;
   const fullCircle = 2 * Math.PI * radius;
-
-  const bluePercent = 70;
-  const redPercent = 30;
-  const showRed = true;
-
   const blueOffset = (1 - bluePercent / 100) * fullCircle;
   const redOffset = (1 - (bluePercent + redPercent) / 100) * fullCircle;
 
@@ -32,7 +53,6 @@ function Analysis() {
               <svg
                 viewBox="-20-8 350 345"
                 className="sm:w-[280px] md:w-[310px] xl:w-[350px] h-auto rotate-[-90deg] origin-center transition-all duration-500 ease-in-out"
-
               >
                 <circle
                   stroke="#ddd"

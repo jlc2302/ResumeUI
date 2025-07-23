@@ -36,7 +36,7 @@ function Qualification() {
       title="Qualification"
       percentage={qualificationScore}
       feedback={qualificationFeedback}
-      top="sm:top-[15%] md:top-[20%] xl:top-[120px]"
+      position="top"
     />
   );
 }

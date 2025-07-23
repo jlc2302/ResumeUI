@@ -36,7 +36,7 @@ function Relevance() {
       title="Relevance"
       percentage={relevanceScore}
       feedback={relevanceFeedback}
-      top="sm:top-[50%] md:top-[60%] xl:top-[380px]"
+      position="bottom"
     />
   );
 }

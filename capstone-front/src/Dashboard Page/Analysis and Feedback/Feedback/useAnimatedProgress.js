@@ -4,22 +4,25 @@ export function useAnimatedProgress(target, speed) {
   const [progress, setProgress] = useState(0);
   const intervalRef = useRef(null);
 
-  useEffect(() => {
-    setProgress(0);
-    clearInterval(intervalRef.current);
+useEffect(() => {
+  clearInterval(intervalRef.current);
+  setProgress(0);
 
-    intervalRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= target) {
-          clearInterval(intervalRef.current);
-          return target;
-        }
-        return prev + 1;
-      });
-    }, speed);
+  if (target <= 0) return;
 
-    return () => clearInterval(intervalRef.current);
-  }, [target, speed]);
+  intervalRef.current = setInterval(() => {
+    setProgress((prev) => {
+      if (prev >= target) {
+        clearInterval(intervalRef.current);
+        return target;
+      }
+      return prev + 1;
+    });
+  }, speed);
+
+  return () => clearInterval(intervalRef.current);
+}, [target, speed]);
+
 
   const getProgressColor = () => {
     if (progress < 40) return "#ff6b6b";

@@ -36,7 +36,7 @@ function WorkHistory() {
       title="Work History"
       percentage={workHistoryScore}
       feedback={workHistoryFeedback}
-      top="sm:top-[15%] md:top-[20%] xl:top-[120px]"
+      position="top"
     />
   );
 }

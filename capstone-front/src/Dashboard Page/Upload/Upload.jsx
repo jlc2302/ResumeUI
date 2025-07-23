@@ -27,7 +27,7 @@ function Upload() {
           {/* Upload Form */}
           <form className="flex flex-col items-center sm:pt-6 xl:pt-8">
             {/* Resume Label */}
-            <h5 className="text-[12px] sm:text-[12px] xl:text-[15px] text-[#133970] font-bold text-center sm:mb-2 ">
+            <h5 className="text-[12px] sm:text-[12px] xl:text-[15px] text-[#133970] font-bold text-center sm:mb-2">
               Upload Resume
             </h5>
 
@@ -45,7 +45,9 @@ function Upload() {
                 className="absolute inset-0 opacity-0 cursor-pointer"
               />
               <p className="text-[clamp(6px,1.3vw,12px)] italic text-[#999] text-center leading-tight">
-                Drag and drop your resume file<br />here or browse to upload
+                Drag and drop your resume file
+                <br />
+                here or browse to upload
               </p>
             </div>
 
@@ -57,18 +59,19 @@ function Upload() {
             {/* Job Description Input */}
             <div
               className="sm:w-[25vw] xl:w-[22rem]
-                         sm:h-[55px] xl:h-[65px]
+                         sm:h-[65px] xl:h-[65px]
                          border border-[#868484] rounded-[10px] bg-white
-                         flex items-center justify-center
+                         flex
                          transition-all duration-500 ease-in-out"
             >
-              <input
-                type="text"
+              <textarea
                 placeholder="Copy and paste your desired job description here"
-                className="w-full h-full bg-transparent text-center
-                           focus:border-2 focus:border-[#3b7ce9]
-                           placeholder:text-[clamp(7px,1.1vw,11px)]
-                           placeholder:italic placeholder:text-[#999] cursor-pointer"
+                className="w-full h-full bg-transparent text-center resize-none
+                           overflow-y-auto flex
+                           pt-[20px]
+                           focus:outline-none focus:border-2 focus:border-[#3b7ce9]
+                           placeholder:text-[clamp(7px,1.1vw,13px)]
+                           placeholder:italic placeholder:text-[#999] cursor-text"
               />
             </div>
 

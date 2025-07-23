@@ -36,7 +36,7 @@ function WorkHistorySkill() {
       title="Skill Match"
       percentage={workSkillScore}
       feedback={workSkillFeedback}
-      top="sm:top-[50%] md:top-[60%] xl:top-[380px]"
+      position="bottom"
     />
   );
 }
