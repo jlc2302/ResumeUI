@@ -9,7 +9,9 @@ function Qualification() {
   useEffect(() => {
     const fetchQualificationScore = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/qualification-score");
+        const response = await axios.get("http://localhost:3000/api/qualification-score", {
+          withCredentials: true
+        });
         setQualificationScore(response.data.score);
       } catch (error) {
         console.error("Failed to fetch qualification score:", error);
@@ -19,7 +21,9 @@ function Qualification() {
 
     const fetchQualificationFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/qualification-feedback");
+        const response = await axios.get("http://localhost:3000/api/qualification-feedback", {
+          withCredentials: true
+        });
         setQualificationFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {
         console.error("Failed to fetch qualification feedback:", error);

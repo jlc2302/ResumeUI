@@ -15,8 +15,9 @@ function Analysis({ speed = 10 }) {
   useEffect(() => {
     const analysisScore = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/analysis-score");
-        const score = response.data.score;
+        const response = await axios.get("http://localhost:3000/api/analysis-score",
+          {withCredentials: true});
+        const score = response.data.overallScore;
         setAnalysisScore(0);
         setTimeout(() => {
           setAnalysisScore(score);

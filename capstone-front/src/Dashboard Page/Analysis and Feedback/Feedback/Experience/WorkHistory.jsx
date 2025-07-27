@@ -9,7 +9,9 @@ function WorkHistory() {
   useEffect(() => {
     const fetchWorkHistoryScore = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/work-history-score");
+        const response = await axios.get("http://localhost:3000/api/work-history-score", {
+          withCredentials: true
+        });
         setWorkHistoryScore(response.data.score);
       } catch (error) {
         console.error("Failed to fetch work history score:", error);
@@ -19,7 +21,9 @@ function WorkHistory() {
 
     const fetchWorkHistoryFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/work-history-feedback");
+        const response = await axios.get("http://localhost:3000/api/work-history-feedback", {
+          withCredentials: true
+        });
         setWorkHistoryFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {
         console.error("Failed to fetch work history feedback:", error);

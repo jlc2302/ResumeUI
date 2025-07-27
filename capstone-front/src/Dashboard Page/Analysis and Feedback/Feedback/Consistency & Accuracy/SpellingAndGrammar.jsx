@@ -9,7 +9,9 @@ function SpellingAndGrammar() {
   useEffect(() => {
     const fetchScore = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/spelling-grammar-score");
+        const response = await axios.get("http://localhost:3000/api/spelling-grammar-score", {
+          withCredentials: true
+        });
         setGrammarScore(response.data.score);
       } catch (error) {
         console.error("Failed to fetch spelling/grammar score:", error);
@@ -19,7 +21,9 @@ function SpellingAndGrammar() {
 
     const fetchFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/spelling-grammar-feedback");
+        const response = await axios.get("http://localhost:3000/api/spelling-grammar-feedback", {
+          withCredentials: true
+        });
         setGrammarFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {
         console.error("Failed to fetch spelling/grammar feedback:", error);

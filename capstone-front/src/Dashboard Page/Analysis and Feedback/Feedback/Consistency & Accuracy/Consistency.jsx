@@ -19,7 +19,9 @@ function Consistency() {
 
     const fetchFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/consistency-feedback");
+        const response = await axios.get("http://localhost:3000/api/consistency-feedback", {
+          withCredentials: true
+        });
         setConsistencyFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {
         console.error("Failed to fetch consistency feedback:", error);

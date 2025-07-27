@@ -1,7 +1,17 @@
+import { useUpload } from "./useUpload";
 import DashboardHeader from "../Header and Sidebar/Header/DashboardHeader";
 import DashboardSidebar from "../Header and Sidebar/Sidebar/DasboardSidebar";
 
 function Upload() {
+  const {
+    resumeFileSelection,
+    resumeFileUpload,
+    submitResumeUpload,
+    jobDescription,
+    setJobDescription,
+    fileInputRef,
+  } = useUpload();
+
   return (
     <>
       <DashboardHeader />
@@ -16,7 +26,7 @@ function Upload() {
                      sm:gap-4
                      transition-all duration-500 ease-in-out"
         >
-          {/* Upload Title */}
+
           <h1 className="text-[#133970] sm:text-[22px] xl:text-[27px] font-medium">
             Hello, Jan!
           </h1>
@@ -24,14 +34,15 @@ function Upload() {
             Ready to boost your Resume
           </h1>
 
-          {/* Upload Form */}
-          <form className="flex flex-col items-center sm:pt-6 xl:pt-8">
-            {/* Resume Label */}
+          <form
+            onSubmit={submitResumeUpload}
+            className="flex flex-col items-center sm:pt-6 xl:pt-8"
+          >
+
             <h5 className="text-[12px] sm:text-[12px] xl:text-[15px] text-[#133970] font-bold text-center sm:mb-2">
               Upload Resume
             </h5>
 
-            {/* Resume Upload Box */}
             <div
               className="relative flex items-center justify-center overflow-hidden
                          sm:w-[25vw] xl:w-[22rem]
@@ -39,10 +50,13 @@ function Upload() {
                          border border-dashed border-[#868484]
                          rounded-[10px] bg-white cursor-pointer
                          transition-all duration-500 ease-in-out"
+              onClick={resumeFileUpload}
             >
               <input
                 type="file"
                 className="absolute inset-0 opacity-0 cursor-pointer"
+                onChange={resumeFileSelection}
+                ref={fileInputRef}
               />
               <p className="text-[clamp(6px,1.3vw,12px)] italic text-[#999] text-center leading-tight">
                 Drag and drop your resume file
@@ -51,12 +65,10 @@ function Upload() {
               </p>
             </div>
 
-            {/* Job Description Label */}
             <h5 className="text-[12px] sm:text-[12px] xl:text-[15px] text-[#133970] font-bold text-center sm:mt-5 sm:mb-2">
               Attach Job Description
             </h5>
 
-            {/* Job Description Input */}
             <div
               className="sm:w-[25vw] xl:w-[22rem]
                          sm:h-[65px] xl:h-[65px]
@@ -67,15 +79,16 @@ function Upload() {
               <textarea
                 placeholder="Copy and paste your desired job description here"
                 className="w-full h-full bg-transparent text-center resize-none
-                           overflow-y-auto flex
+                           flex
                            pt-[20px]
                            focus:outline-none focus:border-2 focus:border-[#3b7ce9]
                            placeholder:text-[clamp(7px,1.1vw,13px)]
                            placeholder:italic placeholder:text-[#999] cursor-text"
+                value={jobDescription}
+                onChange={(e) => setJobDescription(e.target.value)}
               />
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="sm:mt-5 sm:px-[1.2rem] lg:px-[1.7rem] sm:py-[2px] lg:py-[3px]
@@ -87,10 +100,10 @@ function Upload() {
             </button>
           </form>
 
-          {/* Bottom Note */}
           <div className="sm:text-[10px] xl:text-[13px] italic text-[#a7a7a7] mt-5">
             <p>
-              Please note that AI can make mistakes. We recommend verifying the information provided.
+              Please note that AI can make mistakes. We recommend verifying the
+              information provided.
             </p>
           </div>
         </div>

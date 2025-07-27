@@ -9,7 +9,9 @@ function KeywordMatch() {
   useEffect(() => {
     const fetchKeywordMatch = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/keyword-match-score");
+        const response = await axios.get("http://localhost:3000/api/keyword-match-score", {
+          withCredentials: true
+        });
         console.log("Keyword Match score:", response.data.score);
         setKeywordMatchScore(response.data.score);
       } catch (error) {
@@ -20,7 +22,9 @@ function KeywordMatch() {
 
     const fetchKeywordMatchFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/keyword-match-feedback");
+        const response = await axios.get("http://localhost:3000/api/keyword-match-feedback", {
+          withCredentials: true
+        });
         console.log("Keyword Match feedback:", response.data.comment);
         setKeywordMatchFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {

@@ -9,7 +9,9 @@ function WorkHistorySkill() {
   useEffect(() => {
     const fetchWorkSkillScore = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/work-history-skill-score");
+        const response = await axios.get("http://localhost:3000/api/work-history-skill-score", {
+          withCredentials: true
+        });
         setWorkSkillScore(response.data.score);
       } catch (error) {
         console.error("Failed to fetch skill score:", error);
@@ -19,7 +21,9 @@ function WorkHistorySkill() {
 
     const fetchWorkSkillFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/work-history-skill-feedback");
+        const response = await axios.get("http://localhost:3000/api/work-history-skill-feedback", {
+          withCredentials: true
+        });
         setWorkSkillFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {
         console.error("Failed to fetch skill feedback:", error);

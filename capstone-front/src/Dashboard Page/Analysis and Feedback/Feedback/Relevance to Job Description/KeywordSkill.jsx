@@ -9,7 +9,9 @@ function KeywordSkill() {
   useEffect(() => {
     const fetchKeywordSkillScore = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/keyword-skill-match-score");
+        const response = await axios.get("http://localhost:3000/api/keyword-skill-match-score", {
+          withCredentials: true
+        });
         setKeywordSkillScore(response.data.score);
       } catch (error) {
         console.error("Failed to fetch skill match score:", error);
@@ -19,7 +21,9 @@ function KeywordSkill() {
 
     const fetchKeywordSkillFeedback = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/keyword-skill-match-feedback");
+        const response = await axios.get("http://localhost:3000/api/keyword-skill-match-feedback", {
+          withCredentials: true
+        });
         setKeywordSkillFeedback(response.data.comment || "No feedback provided.");
       } catch (error) {
         console.error("Failed to fetch skill match feedback:", error);
