@@ -5,6 +5,9 @@ function Website() {
   return(
     <main>
       <WebsiteHeader />
+      <section>
+        <div className=""></div>
+      </section>
     </main>
   )
 }

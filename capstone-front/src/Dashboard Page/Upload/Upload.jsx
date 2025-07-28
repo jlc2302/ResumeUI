@@ -71,7 +71,7 @@ function Upload() {
 
             <div
               className="sm:w-[25vw] xl:w-[22rem]
-                         sm:h-[65px] xl:h-[65px]
+                         sm:h-[55px] xl:h-[65px]
                          border border-[#868484] rounded-[10px] bg-white
                          flex
                          transition-all duration-500 ease-in-out"

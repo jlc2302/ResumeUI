@@ -3,28 +3,45 @@ import axios from "axios";
 
 import DashboardHeader from "../Header and Sidebar/Header/DashboardHeader";
 import DashboardSidebar from "../Header and Sidebar/Sidebar/DasboardSidebar";
+
 import RightArrowIcon from "../../assets/right arrow.png";
 import DownloadIcon from "../../assets/Download.png";
 
 function Result() {
+  const [originalResume, setOriginalResume] = useState("");
   const [optimizedResume, setOptimizedResume] = useState("");
   const [format, setFormat] = useState("pdf");
 
-  useEffect(() => {
-    const fetchOptimizedResume = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/api/result", {
-          withCredentials: true
-        });
-        setOptimizedResume(response.data.resume || "No optimized resume found.");
-      } catch (error) {
-        console.error("Failed to fetch optimized resume:", error);
-        setOptimizedResume("Error loading optimized resume.");
-      }
-    };
+useEffect(() => {
+  // Fetch original resume
+  const fetchOriginal = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/original", {
+        withCredentials: true,
+      });
+      setOriginalResume(response.data.original || "No original resume found.");
+    } catch (error) {
+      console.error("Failed to fetch original resume:", error);
+      setOriginalResume("Error loading original resume.");
+    }
+  };
 
-    fetchOptimizedResume();
-  }, []);
+  // Fetch optimized resume
+  const fetchOptimized = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/optimized", {
+        withCredentials: true,
+      });
+      setOptimizedResume(response.data.resume || "No optimized resume found.");
+    } catch (error) {
+      console.error("Failed to fetch optimized resume:", error);
+      setOptimizedResume("Error loading optimized resume.");
+    }
+  };
+
+  fetchOriginal();
+  fetchOptimized();
+}, []);
 
   const handleDownload = async () => {
     try {
@@ -60,20 +77,19 @@ function Result() {
 
       <section>
         <div className="fixed top-[105px] left-[290px] bottom-[200px] w-[63rem] h-[32rem] px-[70px] bg-white border-2 border-[#c2bebe] rounded-[10px]">
-
           <div className="flex justify-around relative top-[9px] px-[20px] pl-[50px]">
             <h1 className="text-[14px] text-[#133970]">Original</h1>
             <h1 className="text-[14px] text-[#133970]">Resume Optimize</h1>
           </div>
 
           <div className="flex items-center relative w-[85%] h-[65%] top-[5px] left-[65px]">
-            <div className="bg-[#a6a6a6] w-[30%] h-[85%] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto">
-              <p>Original resume will go here.</p>
+            <div className="bg-[#a6a6a6] w-[30%] h-[85%] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto whitespace-pre-wrap">
+              {originalResume}
             </div>
 
             <img className="w-[50px]" src={RightArrowIcon} alt="Next Page" />
 
-            <div className="bg-[#a6a6a6] w-[30%] h-[85%] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto">
+            <div className="bg-[#a6a6a6] w-[30%] h-[85%] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto whitespace-pre-wrap">
               {optimizedResume}
             </div>
           </div>
@@ -85,7 +101,7 @@ function Result() {
             <select
               value={format}
               onChange={(e) => setFormat(e.target.value)}
-              className="p-[8px] w-[250px] h-[30px] text-[10px] border border-[#ccc] rounded-[6px] bg-[#f9f9f9] text-[#1e3a8a]"
+              className="p-[8px] w-[250px] h-[30px] text-[10px] border border-[#ccc] rounded-[6px] bg-[#f9f9f9] text-[#1e3a8a] focus:border-[#3b7ce9]"
             >
               <option value="pdf">PDF</option>
               <option value="docx">DOCX</option>

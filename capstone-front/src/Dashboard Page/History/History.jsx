@@ -7,7 +7,7 @@ function History() {
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("history")) || [];
-    setHistoryData(stored.reverse()); // Show newest first
+    setHistoryData(stored.reverse());
   }, []);
 
   const radius = 115;
