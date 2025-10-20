@@ -1,47 +1,43 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
 import DashboardHeader from "../Header and Sidebar/Header/DashboardHeader";
 import DashboardSidebar from "../Header and Sidebar/Sidebar/DasboardSidebar";
-
 import RightArrowIcon from "../../assets/right arrow.png";
 import DownloadIcon from "../../assets/Download.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Result() {
   const [originalResume, setOriginalResume] = useState("");
   const [optimizedResume, setOptimizedResume] = useState("");
   const [format, setFormat] = useState("pdf");
 
-useEffect(() => {
-  // Fetch original resume
-  const fetchOriginal = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api/original", {
-        withCredentials: true,
-      });
-      setOriginalResume(response.data.original || "No original resume found.");
-    } catch (error) {
-      console.error("Failed to fetch original resume:", error);
-      setOriginalResume("Error loading original resume.");
-    }
-  };
+  useEffect(() => {
+    const fetchOriginal = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/original", {
+          withCredentials: true,
+        });
+        setOriginalResume(response.data.original || "No original resume found.");
+      } catch (error) {
+        console.error("Failed to fetch original resume:", error);
+        setOriginalResume("Error loading original resume.");
+      }
+    };
 
-  // Fetch optimized resume
-  const fetchOptimized = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api/optimized", {
-        withCredentials: true,
-      });
-      setOptimizedResume(response.data.resume || "No optimized resume found.");
-    } catch (error) {
-      console.error("Failed to fetch optimized resume:", error);
-      setOptimizedResume("Error loading optimized resume.");
-    }
-  };
+    const fetchOptimized = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/api/optimized", {
+          withCredentials: true,
+        });
+        setOptimizedResume(response.data.resume || "No optimized resume found.");
+      } catch (error) {
+        console.error("Failed to fetch optimized resume:", error);
+        setOptimizedResume("Error loading optimized resume.");
+      }
+    };
 
-  fetchOriginal();
-  fetchOptimized();
-}, []);
+    fetchOriginal();
+    fetchOptimized();
+  }, []);
 
   const handleDownload = async () => {
     try {
@@ -76,20 +72,24 @@ useEffect(() => {
       <DashboardSidebar />
 
       <section>
-        <div className="fixed top-[105px] left-[290px] bottom-[200px] w-[63rem] h-[32rem] px-[70px] bg-white border-2 border-[#c2bebe] rounded-[10px]">
-          <div className="flex justify-around relative top-[9px] px-[20px] pl-[50px]">
-            <h1 className="text-[14px] text-[#133970]">Original</h1>
-            <h1 className="text-[14px] text-[#133970]">Resume Optimize</h1>
+        <div className="relative xl:top-[90px] 2xl:top-[100px] xl:left-[22%] xl:w-[74vw]  xl:h-[32rem] 2xl:h-[34.4rem] xl:px-[70px] 2xl:px-[90px] bg-white border-2 border-[#c2bebe] rounded-[10px]">
+          <div className="flex justify-between relative xl:top-[3px] xl:pl-[11.1rem] 2xl:pl-[12.8rem] xl:pr-[9.1rem] 2xl:pr-[10.5rem]">
+            <h1 className="xl:text-[14px] 2xl:text-[15px] text-[#133970]">
+              Original
+            </h1>
+            <h1 className="xl:text-[14px] 2xl:text-[15px] text-[#133970]">
+              Resume Optimize
+            </h1>
           </div>
 
-          <div className="flex items-center relative w-[85%] h-[65%] top-[5px] left-[65px]">
-            <div className="bg-[#a6a6a6] w-[30%] h-[85%] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto whitespace-pre-wrap">
+          <div className="flex items-center relative xl:top-[5px]">
+            <div className="bg-[#a6a6a6] xl:w-[14rem] 2xl:w-[15rem] xl:h-[17.8rem] 2xl:h-[19.5rem] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto whitespace-pre-wrap">
               {originalResume}
             </div>
 
             <img className="w-[50px]" src={RightArrowIcon} alt="Next Page" />
 
-            <div className="bg-[#a6a6a6] w-[30%] h-[85%] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto whitespace-pre-wrap">
+            <div className="bg-[#a6a6a6] xl:w-[14rem] 2xl:w-[15rem] xl:h-[17.8rem] 2xl:h-[19.5rem] mb-[35px] p-[3px] text-[7px] mx-auto overflow-auto whitespace-pre-wrap">
               {optimizedResume}
             </div>
           </div>
@@ -101,7 +101,7 @@ useEffect(() => {
             <select
               value={format}
               onChange={(e) => setFormat(e.target.value)}
-              className="p-[8px] w-[250px] h-[30px] text-[10px] border border-[#ccc] rounded-[6px] bg-[#f9f9f9] text-[#1e3a8a] focus:border-[#3b7ce9]"
+              className="p-[8px] xl:w-[250px] xl:h-[30px] xl:text-[10px] border border-[#ccc] rounded-[6px] bg-[#f9f9f9] text-[#1e3a8a] focus:border-[#3b7ce9]"
             >
               <option value="pdf">PDF</option>
               <option value="docx">DOCX</option>
@@ -110,7 +110,7 @@ useEffect(() => {
 
           <button
             onClick={handleDownload}
-            className="flex flex-col items-center justify-center gap-[3px] w-[15%] h-[40px] bg-[#133970] text-white rounded-[10px] absolute left-[427px] font-bold text-[11px] cursor-pointer"
+            className="flex flex-col items-center justify-center xl:gap-[3px] xl:w-[9rem] 2xl:w-[10rem] xl:h-[40px] 2xl:h-[45px] bg-[#133970] text-white rounded-[10px] absolute left-1/2 xl:-translate-x-[45%] 2xl:-translate-x-[47%] font-bold text-[11px] cursor-pointer"
           >
             <img src={DownloadIcon} alt="Download" className="w-[12px]" />
             <span>Download</span>

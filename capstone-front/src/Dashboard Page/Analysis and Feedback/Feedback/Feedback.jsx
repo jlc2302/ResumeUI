@@ -22,30 +22,55 @@ function Feedback() {
 
   const views = [
     <>
-      <h1 className="fixed text-[#133970] font-semibold md:text-[21px] xl:text-[24px] md:top-[10.5%] xl:top-[75px] md:left-[47%] lg:left-[52%] xl:left-[690px]">
+<h1
+  className="
+    fixed top-18 xl:top-16 2xl:top-18 left-1/2 -translate-x-1
+    text-[#133970] font-semibold
+    text-lg md:text-[21px] xl:text-[24px] 2xl:text-[27px]
+  "
+>
         Relevance to Job Description
       </h1>
       <KeywordMatch />
       <KeywordSkill />
     </>,
     <>
-      <h1 className="fixed text-[#133970] font-semibold md:text-[21px] xl:text-[24px] md:top-[10.5%] xl:top-[75px] md:left-[55%] lg:left-[57%] xl:left-[780px]">
+<h1
+  className="
+    fixed top-18 xl:top-16 2xl:top-18 right-1/3 -translate-x-5
+    text-[#133970] font-semibold
+    text-lg md:text-[21px] xl:text-[24px] 2xl:text-[27px]
+  "
+>
         Experience
       </h1>
       <WorkHistory />
       <WorkHIstorySkill />
     </>,
     <>
-      <h1 className="fixed text-[#133970] font-semibold md:text-[21px] xl:text-[24px] md:top-[10.5%] xl:top-[75px] md:left-[55%] lg:left-[57%] xl:left-[780px]">
+<h1
+  className="
+    fixed top-18 xl:top-16 2xl:top-18 right-1/3 -translate-x-5
+    text-[#133970] font-semibold
+    text-lg md:text-[21px] xl:text-[24px] 2xl:text-[27px]
+  "
+>
         Education
       </h1>
       <Qualification />
       <Relevance />
     </>,
     <>
-      <h1 className="fixed text-[#133970] font-semibold md:text-[21px] xl:text-[24px] md:top-[10.5%] xl:top-[75px] md:left-[49%] lg:left-[52%] xl:left-[690px]">
-        Consistency & Accuracy
-      </h1>
+<h1
+  className="
+    fixed top-18 xl:top-16 2xl:top-18 right-1/4 -translate-x-23
+    text-[#133970] font-semibold
+    text-lg md:text-[21px] xl:text-[24px] 2xl:text-[27px]
+  "
+>
+  Consistency & Accuracy
+</h1>
+
       <Consistency />
       <SpellingAndGrammar />
     </>,
@@ -66,7 +91,7 @@ function Feedback() {
   };
 
   return (
-    <main className="relative">
+    <main>
       <DashboardHeader />
       <DashboardSidebar />
 
@@ -79,14 +104,14 @@ function Feedback() {
             src={LeftArrowIcon}
             alt="Previous"
             onClick={handlePrev}
-            className="fixed w-[42px] sm:top-[30%] md:top-[40%] xl:top-[47%] sm:left-[28%] md:left-[41%] lg:left-[47%] xl:left-[48%] translate-x-[120px] translate-y-[280px] cursor-pointer"
+            className="fixed sm:w-[42px] 2xl:w-[45px] sm:top-[30%] md:top-[40%] xl:top-[37rem] 2xl:top-[39.7rem] right-1/3 -translate-x-30 cursor-pointer"
           />
         )}
         <img
           src={RightArrowIcon}
           alt={step < views.length - 1 ? "Next" : "Go to Result"}
           onClick={handleNext}
-          className="fixed w-[42px] sm:top-[30%] md:top-[40%] xl:top-[47%] sm:left-[28%] md:left-[41%] lg:left-[47%] xl:left-[660px] translate-x-[170px] translate-y-[280px]"
+          className="fixed sm:w-[42px] 2xl:w-[45px] sm:top-[30%] md:top-[40%] xl:top-[37rem] 2xl:top-[39.7rem] right-1/3 -translate-x-15 cursor-pointer"
         />
       </div>
     </main>

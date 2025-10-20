@@ -6,11 +6,12 @@ export function useUpload() {
   const [resumeFile, setResumeFile] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
   const [plainText, setPlainText] = useState("");
+
   const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
   const resumeFileSelection = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files?.[0];
     if (!file) return;
 
     if (file.size === 0) {
@@ -19,13 +20,13 @@ export function useUpload() {
       return;
     }
 
-    const allowedResumeFormats = [
+    const allowedFormats = [
       "application/pdf",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ];
 
-    if (!allowedResumeFormats.includes(file.type)) {
+    if (!allowedFormats.includes(file.type)) {
       alert("Invalid file type. Only PDF, DOC, or DOCX files are allowed.");
       e.target.value = null;
       return;
@@ -36,7 +37,7 @@ export function useUpload() {
   };
 
   const resumeFileUpload = () => {
-    fileInputRef.current.click();
+    fileInputRef.current?.click();
   };
 
   const submitResumeUpload = async (e) => {
@@ -44,12 +45,12 @@ export function useUpload() {
 
     if (!resumeFile) {
       alert("Please upload a resume file.");
-      return false;
+      return;
     }
 
     if (!jobDescription.trim()) {
       alert("Please enter a job description.");
-      return false;
+      return;
     }
 
     const formData = new FormData();
@@ -57,35 +58,30 @@ export function useUpload() {
     formData.append("jobDescription", jobDescription);
 
     try {
-      const response = await axios.post("http://localhost:3000/api/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        withCredentials: true,
-      });
-
-      const { success, message, resumeText } = response.data;
-
-      if (!success && message !== "Upload Successful") {
-        alert(message || "Upload Failed");
-        return false;
-      }
-
-      const analyzeRes = await axios.post(
-        "http://localhost:3000/api/analyze",
+      const { data: uploadData } = await axios.post(
+        "http://localhost:3000/api/upload",
+        formData,
         {
-          resumeText,
-          jobDescription,
-        },
-        {
+          headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true,
         }
       );
 
-      const analysis = analyzeRes.data;
+      const { success, message, resumeText } = uploadData;
+
+      if (!success) {
+        alert(message || "Upload Failed");
+        return;
+      }
+
+      const { data: analysis } = await axios.post(
+        "http://localhost:3000/api/analyze",
+        { resumeText, jobDescription },
+        { withCredentials: true }
+      );
+
       setPlainText(resumeText);
 
-      // Create new entry
       const newEntry = {
         resumeText,
         jobDescription,
@@ -93,18 +89,15 @@ export function useUpload() {
         createdAt: new Date().toISOString(),
       };
 
-      // Retrieve and update history
-      const history = JSON.parse(localStorage.getItem("history")) || [];
+      const history = JSON.parse(localStorage.getItem("history") || "[]");
       history.push(newEntry);
       localStorage.setItem("history", JSON.stringify(history));
 
       alert("Upload & AI analysis successful");
       navigate("/analysis");
-      return true;
     } catch (error) {
       console.error("Upload Failed:", error);
       alert("Upload Failed, Server Error");
-      return false;
     }
   };
 
